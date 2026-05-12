@@ -1,6 +1,11 @@
 from typing import Any
 from django.contrib.auth import get_user_model
 
+try:
+    from services.user import get_user # noqa
+except ImportError:
+    pass
+
 
 def create_user(
     username: str,
@@ -26,7 +31,7 @@ def create_user(
     return user
 
 
-def get_user(user_id: int) -> Any:
+def get_user(user_id: int) -> Any: # noqa
     return get_user_model().objects.get(id=user_id)
 
 
